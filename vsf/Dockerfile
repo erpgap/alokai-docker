@@ -1,4 +1,4 @@
-ARG NODE_VERSION=20.10
+ARG NODE_VERSION=20.10.0
 ARG YARN_VERSION=3.6.1
 
 FROM node:${NODE_VERSION}-slim as vsf-pre
@@ -25,4 +25,4 @@ ENV REDIS_URL=$REDIS_URL
 COPY --from=vsf-pre /src/apps/web/.output ./
 
 ENV HOST 0.0.0.0
-CMD [ "node", "/src/server/index.mjs" ]
+CMD [ "node", "/server/index.mjs" ]
