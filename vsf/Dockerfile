@@ -3,8 +3,10 @@ ARG YARN_VERSION=3.6.1
 
 FROM node:${NODE_VERSION}-slim as vsf-pre
 ARG TAG_BRANCH=main
-ARG REDIS_URL="redis://redis:6379"
-ENV REDIS_URL=$REDIS_URL
+ARG NUXT_STORAGE_DRIVER="redis"
+ARG NUXT_STORAGE_URL="redis://redis:6379"
+ENV NUXT_STORAGE_URL=$NUXT_STORAGE_URL
+ENV NUXT_STORAGE_DRIVER=$NUXT_STORAGE_DRIVER
 WORKDIR /src
 
 RUN apt-get update &&  apt-get install -y --no-install-recommends git ca-certificates \
@@ -20,9 +22,9 @@ RUN apt-get update &&  apt-get install -y --no-install-recommends git ca-certifi
 
 FROM vsf-pre as vsf2
 ENV PORT=$PORT
-ENV REDIS_URL=$REDIS_URL
+ENV $NUXT_STORAGE_URL=$NUXT_STORAGE_URL
 
-COPY --from=vsf-pre /src/apps/web/.output ./
+COPY --from=vsf-pre /src/.output ./
 
 ENV HOST 0.0.0.0
-CMD [ "node", "/server/index.mjs" ]
+CMD [ "node", "/src/server/index.mjs" ]
