@@ -1,4 +1,4 @@
-# Vuestorefront / Odoo Docker
+# Alokai (former Vuestorefront) / Odoo Docker
 
 ## Introduction
 
@@ -10,7 +10,7 @@ Main repo's are at:
 * https://github.com/odoogap/storefront-ui boilerplate for the SFUI v2 we are using on this demo
 
 <div align="center">
-  <img src="vsf-odoo.png" alt="Vue Storefront" width="30%"/>
+  <img src="alokai-odoo.webp" alt="Alokai / Odoo " width="80%"/>
 </div>
 
 ## Installation
