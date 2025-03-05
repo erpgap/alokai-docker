@@ -17,7 +17,7 @@ WORKDIR /src
 
 RUN apt-get update &&  apt-get install -y --no-install-recommends git ca-certificates \
   && rm -rf /var/lib/apt/lists/* \
-  && git clone --depth=1 --recurse-submodules --branch ${TAG_BRANCH} https://github.com/odoogap/storefront-ui . \
+  && git clone --depth=1 --recurse-submodules --branch ${TAG_BRANCH} https://github.com/erpgap/storefront-ui . \
   && yarn add wait-on -W \
   && yarn install \
   --prefer-offline \
