@@ -7,7 +7,7 @@ Main repo's are at:
 
 * https://github.com/vuestorefront-community/odoo using sdk-migration branch for the storefront modules and 
 * https://github.com/erpgap/alokai-odoo.git for the modules you need to install on your Odoo server
-* https://github.com/odoogap/storefront-ui boilerplate for the SFUI v2 we are using on this demo
+* https://github.com/erpgap/storefront-ui boilerplate for the SFUI v2 we are using on this demo
 
 <div align="center">
   <img src="alokai-odoo.webp" alt="Alokai / Odoo " width="80%"/>
