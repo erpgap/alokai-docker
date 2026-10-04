@@ -1,5 +1,6 @@
-ARG IMAGE_NODE_VERSION="20.10.0"
-ARG YARN_VERSION="3.6.1"
+# syntax=docker/dockerfile:1
+
+ARG IMAGE_NODE_VERSION="22.17.1"
 ARG PORT=3000
 
 FROM node:${IMAGE_NODE_VERSION}-slim AS alokai-pre
@@ -18,16 +19,22 @@ ENV NUXT_STORAGE_URL=$NUXT_STORAGE_URL \
     
 WORKDIR /src
 
-RUN apt-get update &&  apt-get install -y --no-install-recommends git ca-certificates \
-  && rm -rf /var/lib/apt/lists/* \
-  && git clone --depth=1 --recurse-submodules --branch ${TAG_BRANCH} ${GIT_REPO} . \
-  && yarn add wait-on -W \
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN git clone --depth=1 --recurse-submodules --branch ${TAG_BRANCH} ${GIT_REPO} .
+
+# For demo builds, copy .env from build context instead of using build secrets
+COPY .env /src/.env
+
+RUN yarn add wait-on -W \
   && yarn install \
   --prefer-offline \
   --frozen-lockfile \
   --non-interactive \
   --production=false \
-  && yarn build
+  && yarn build \
+  && rm .env
 
 FROM alokai-pre AS alokai
 

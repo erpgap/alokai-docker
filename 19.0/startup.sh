@@ -1,11 +1,11 @@
 #!/bin/bash
-BRANCH="18.0"
+BRANCH="19.0"
 function install_alokai() {
     if [ ! -d "/mnt/extra-addons/graphql_alokai" ];
     then 
         git clone --recurse-submodules --branch $BRANCH https://github.com/erpgap/alokai-odoo.git /mnt/extra-addons/
-        /entrypoint.sh odoo -d v18_odoo --max-cron-threads 0 --no-http --stop-after-init -i graphql_alokai
-        /entrypoint.sh odoo shell -d v18_odoo --max-cron-threads 0 --stop-after-init --no-http < /start_script.py 
+        /entrypoint.sh odoo -d v19_odoo --max-cron-threads 0 --no-http --stop-after-init --with-demo -i graphql_alokai
+        /entrypoint.sh odoo shell -d v19_odoo --max-cron-threads 0 --stop-after-init --no-http < /start_script.py 
     fi
 }
 install_alokai && /entrypoint.sh odoo

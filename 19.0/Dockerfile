@@ -1,4 +1,4 @@
-FROM odoo:18 AS erpgap
+FROM odoo:19 AS erpgap
 
 USER root
 
